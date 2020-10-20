@@ -1,0 +1,40 @@
+<div class="column is-9">
+  <h3 class="title is-5 has-text-grey-light">Latest Discussions</h3>
+
+  <article>
+      <% @posts.each do |post| %>
+      <div class="columns box mb-4">
+        <div class="column is-1">
+        privet kak dela
+        </div>
+        <div class="column is-8">
+          <%= link_to post_path(post.slug) do %>
+            <h3 class="title is-5">
+              <%= post.title %>
+            </h3>
+          <% end %>
+          <div class="content">
+            <p><em><small>Posted <%= time_ago_in_words(post.created_at) %> ago
+              by <%= post.user.username %>
+              </small>
+              </em>
+            </p>
+          </div>
+        </div>
+
+        <div class="column has-text-right">
+          <% if can? :update, post %>
+            <%= link_to 'Edit', edit_post_path(post.slug), class:'button' %>
+          <% end %>
+
+          <% if can? :destroy, post %>
+            <%= link_to 'Delete', post_path(post.slug), method: :delete, data: { confirm: 'Are you sure?' }, class: "button" %>
+          <% end %>
+
+          </div>
+
+      </div>
+    <% end %>
+  </article>
+
+</div>

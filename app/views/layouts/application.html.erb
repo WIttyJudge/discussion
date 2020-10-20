@@ -11,7 +11,7 @@
 
   </head>
 
-  <body>
+  <body class="has-background-white-bis">
     <% if flash[:notice] %>
       <div class="notification is-success global-notification">
         <p class="notice"><%= notice %></p>
@@ -24,7 +24,7 @@
     </div>
     <% end %>
 
-     <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+     <nav class="navbar  role="navigation" aria-label="main navigation">
      <div class="container">
       <div class="navbar-brand">
         <%= link_to root_path, class:"navbar-item" do %>
@@ -38,6 +38,10 @@
     </div>
 
       <div id="navbar" class="navbar-menu">
+        <div class="navbar-start">
+          <%= link_to "Posts", posts_path, class: "navbar-item" %>
+        </div>
+
         <div class="navbar-end">
           <% if user_signed_in? %>
 
@@ -57,8 +61,8 @@
 
               <%= link_to "Write a post", new_post_path, class: "navbar-item" %>
 
-              <hr>
-              <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"navbar-item" %>
+              <hr class="navbar-divider">
+              <%= link_to "Sign out", signout_confirm_path, class: "navbar-item" %>
             </div>
           </div>
 
@@ -68,7 +72,7 @@
           <div class="field is-grouped">
 
             <p class="control">
-              <%= link_to "Log in", new_user_session_path, class: "button is-light"%>
+              <%= link_to "Log in", login_path, class: "button is-light"%>
             </p>
 
             <p class="control">
@@ -84,11 +88,11 @@
     </div>
   </nav>
 
-<section class="section">
-  <div class="container">
-    <%= yield %>
-  </div>
-</section>
+    <section class="section ">
+      <div class="container">
+        <%= yield %>
+      </div>
+    </section>
 
   </body>
 </html>

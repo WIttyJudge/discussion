@@ -1,0 +1,14 @@
+<div class="column is-3 is-offset-1">
+  <h3 class="title is-5 has-text-grey">Tags</h3>
+
+  <aside class="menu">
+    <ul class="list">
+      <% @tags.each do |tag| %>
+        <li class="mb-2">
+          <%= link_to tag.name, tag, class: 'has-text-dark' %>
+        </li>
+      <% end %>
+    </ul>
+  </aside>
+
+</div>
