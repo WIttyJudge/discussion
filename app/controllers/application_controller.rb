@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to root_url, :alert => exception.message
+  protect_from_forgery
+
+  rescue_from CanCan::AccessDenied do
+    render file: 'static/403', status: 403, layout: false
   end
 end

@@ -10,13 +10,17 @@ Rails.application.routes.draw do
   end
 
   resources :posts, param: :slug do
-    resource :replies, only: %i[ new create ]
+    resource :replies, only: %i[create]
   end
 
-  resources :tags, param: :slug, only: %i[ show new create ]
+  resources :tags, param: :slug, only: %i[show new create]
 
+  # Admin Panel
   namespace :admin do
-    resources :posts
+    get '/', to: redirect('/admin/posts')
+
+    resources :posts, only: %i[index]
+    resources :comments, only: %i[index]
   end
 
   get 'signout_confirm', to: 'users#signout_confirm'

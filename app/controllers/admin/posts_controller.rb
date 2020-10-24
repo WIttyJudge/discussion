@@ -1,6 +1,5 @@
 module Admin
   class PostsController < BaseController
-    def index
-    end
+    def index; end
   end
 end

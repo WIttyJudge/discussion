@@ -1,15 +1,14 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: %i[ index show ]
-  before_action :set_user, only: %i[ create ]
-  before_action :set_post, only: %i[ show destroy ]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_user, only: %i[create]
+  before_action :set_post, only: %i[show destroy]
 
   def index
     @posts = Post.includes(:user).recent
     @tags = Tag.alphabetical
   end
 
-  def show
-  end
+  def show; end
 
   def new
     @post = Post.new
@@ -19,24 +18,22 @@ class PostsController < ApplicationController
   def create
     @post = @user.posts.create(post_params)
 
-    if @post
-      text = "Post successfuly created"
-      flash[:notice] = text
-      redirect_to post_path(@post.slug)
-    end
+    return unless @post
+
+    text = 'Post successfuly create"'
+    flash[:notice] = text
+    redirect_to post_path(@post.slug)
   end
 
-  def edit
-  end
+  def edit; end
 
-  def update
-  end
+  def update; end
 
   def destroy
     authorize! :destroy, @post
 
     @post.destroy
-    flash[:notice] = "Post deleted"
+    flash[:notice] = 'Post deleted'
     redirect_to posts_path
   end
 

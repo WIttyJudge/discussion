@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
-  before_action :set_tag, only: %i[ show ]
-  before_action :tag_params, only: %i[ create ]
+  before_action :set_tag, only: %i[show]
+  before_action :tag_params, only: %i[create]
 
   def show
     @posts = @tag.posts
