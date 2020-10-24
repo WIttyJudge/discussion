@@ -3,7 +3,7 @@
 
   <aside class="menu">
     <ul class="list">
-      <% @tags.each do |tag| %>
+      <% tags.each do |tag| %>
         <li class="mb-2">
           <%= link_to tag.name, tag, class: 'has-text-dark' %>
         </li>
