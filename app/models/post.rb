@@ -6,7 +6,10 @@ class Post < ApplicationRecord
   has_many :replies, dependent: :destroy
   has_and_belongs_to_many :tags
 
-  after_validation :create_slug
+  validates :title, presence: true, length: { maximum: 128 }
+  validates :body, presence: true
+
+  before_save :create_slug
 
   scope :recent, -> { order(created_at: :desc) }
 
