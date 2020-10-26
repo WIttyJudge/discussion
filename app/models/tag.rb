@@ -1,9 +1,10 @@
 class Tag < ApplicationRecord
   has_and_belongs_to_many :posts
 
-  validates_presence_of :name
+  validates :name, presence: true
+  # validates :name, uniqueness: { case_sensitive: false }
 
-  after_validation :name_capitalize, :create_slug
+  before_save :name_capitalize, :create_slug
 
   scope :alphabetical, -> { order(name: :asc) }
 
