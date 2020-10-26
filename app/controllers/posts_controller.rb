@@ -20,7 +20,7 @@ class PostsController < ApplicationController
 
     return unless @post
 
-    text = 'Post successfuly create"'
+    text = 'Post successfuly create'
     flash[:notice] = text
     redirect_to post_path(@post.slug)
   end
