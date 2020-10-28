@@ -9,12 +9,6 @@ Rails.application.routes.draw do
     get 'login', to: 'devise/sessions#new'
   end
 
-  resources :posts, param: :slug do
-    resource :replies, only: %i[create]
-  end
-
-  resources :tags, param: :slug, only: %i[show new create]
-
   # Admin Panel
   namespace :admin do
     get '/', to: redirect('/admin/posts')
@@ -22,6 +16,12 @@ Rails.application.routes.draw do
     resources :posts, only: %i[index]
     resources :comments, only: %i[index]
   end
+
+  resources :posts, param: :slug do
+    resource :replies, only: %i[create]
+  end
+
+  resources :tags, param: :slug, only: %i[show new create]
 
   get 'signout_confirm', to: 'users#signout_confirm'
 
