@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[index show]
-  before_action :set_user, only: %i[create]
+  before_action :set_author, only: %i[create]
   before_action :set_post, only: %i[show destroy]
 
   def index
-    @posts = Post.includes(:user).recent
+    @posts = Post.includes(:author).recent
     @tags = Tag.alphabetical
   end
 
@@ -16,13 +16,13 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = @user.posts.create(post_params)
+    @post = @author.posts.create(post_params)
 
     return unless @post
 
+    redirect_to post_path(@post.slug)
     text = 'Post successfuly create'
     flash[:notice] = text
-    redirect_to post_path(@post.slug)
   end
 
   def edit; end
@@ -39,8 +39,8 @@ class PostsController < ApplicationController
 
   private
 
-  def set_user
-    @user = current_user
+  def set_author
+    @author = current_user
   end
 
   def set_post
