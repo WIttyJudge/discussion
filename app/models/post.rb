@@ -1,12 +1,14 @@
 class Post < ApplicationRecord
   resourcify
 
-  belongs_to :user
+  delegate :username, to: :author, prefix: true
+
+  belongs_to :author, class_name: 'User'
 
   has_many :replies, dependent: :destroy
   has_and_belongs_to_many :tags
 
-  validates :title, presence: true, length: { maximum: 128 }
+  validates :title, presence: true, length: { in: 10..128 }
   validates :body, presence: true
 
   before_save :create_slug
