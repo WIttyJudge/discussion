@@ -4,6 +4,6 @@ FactoryBot.define do
   factory :post do
     title { generate(:title) }
     body { Faker::Lorem.sentences }
-    user
+    author factory: :user
   end
 end
