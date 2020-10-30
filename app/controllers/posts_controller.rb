@@ -30,7 +30,7 @@ class PostsController < ApplicationController
   def update; end
 
   def destroy
-    authorize! :destroy, @post
+    authorize @post
 
     @post.destroy
     flash[:notice] = 'Post deleted'

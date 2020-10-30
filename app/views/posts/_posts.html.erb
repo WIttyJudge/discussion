@@ -23,15 +23,15 @@
         </div>
 
         <div class="column has-text-right">
-          <% if can? :update, post %>
+          <% if policy(post).update? %>
             <%= link_to 'Edit', edit_post_path(post.slug), class:'button' %>
           <% end %>
 
-          <% if can? :destroy, post %>
+          <% if policy(post).destroy? %>
             <%= link_to 'Delete', post_path(post.slug), method: :delete, data: { confirm: 'Are you sure?' }, class: "button" %>
           <% end %>
 
-          </div>
+        </div>
 
       </div>
     <% end %>

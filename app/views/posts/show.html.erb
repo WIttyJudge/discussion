@@ -6,11 +6,11 @@
       <div class="level-left"></div>
       <div class="level-right">
         <div class="buttons">
-          <% if can? :update, @post %>
+           <% if policy(@post).update? %>
             <%= link_to 'Edit Discussion', edit_post_path(@post.slug), class:'button'%>
           <% end %>
 
-          <% if can? :destroy, @post %>
+          <% if policy(@post).destroy? %>
             <%= link_to 'Delete', post_path(@post.slug), method: :delete, data: { confirm: "Delete discussion?" }, class:'button' %>
           <% end %>
         </div>
