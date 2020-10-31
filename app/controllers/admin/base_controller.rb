@@ -3,7 +3,7 @@ module Admin
     layout 'admin'
 
     before_action :authenticate_user!
-    before_action :verify_admin
+    before_action :verify_access
 
     # This is used in app/views/layouts/admin.html.erb
     MENU_ITEMS = [
@@ -13,7 +13,7 @@ module Admin
 
     private
 
-    def verify_admin
+    def verify_access
       redirect_to root_path unless current_user.has_role? :almighty
     end
   end
