@@ -35,4 +35,8 @@
 yarn-debug.log*
 .yarn-integrity
 
+# Ignore configuration file.
 .env
+
+# Ignore code coverage
+/coverage/*
