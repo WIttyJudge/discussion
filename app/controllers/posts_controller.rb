@@ -11,6 +11,7 @@ class PostsController < ApplicationController
   def show; end
 
   def new
+    authorize Post
     @post = Post.new
     @tags = Tag.pluck(:name)
   end
