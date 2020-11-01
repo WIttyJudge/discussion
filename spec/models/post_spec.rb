@@ -1,11 +1,11 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Post, :type => :model do
 
   let(:post) { create(:post) }
 
   describe "associations" do
-    it { should belong_to(:author).class_name('User') }
+    it { should belong_to(:author).class_name("User") }
     it { should have_many(:replies).dependent(:destroy) }
     it { should have_and_belong_to_many(:tags) }
   end
@@ -17,6 +17,18 @@ RSpec.describe Post, :type => :model do
         .is_at_most(128)
     }
     it { should validate_presence_of(:body) }
+  end
+
+  describe "#capitalize_first_char_title" do
+    let!(:post) { create(:post, title: "this is My striNg") }
+
+    it "first character is uppercase" do
+      expect(post.title[0]).to eq("T")
+    end
+
+    it "full title formatted correctly" do
+      expect(post.title).to eq("This is My striNg")
+    end
   end
 
   describe "#create_slug" do

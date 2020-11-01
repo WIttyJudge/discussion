@@ -11,11 +11,16 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { in: 10..128 }
   validates :body, presence: true
 
-  before_save :create_slug
+  before_save :capitalize_first_char_title, :create_slug
 
   scope :recent, -> { order(created_at: :desc) }
 
   private
+
+  # takes only first character and makes it uppercase.
+  def capitalize_first_char_title
+    self.title = title.upcase_first
+  end
 
   def create_slug
     self.slug = generate_slug
