@@ -2,7 +2,7 @@ require 'dotenv/load'
 
 # simplecov gem
 # See https://github.com/simplecov-ruby/simplecov
-if ENV["COVERAGE"] == "true"
+if ENV["COVERAGE"] == 'true'
   require 'simplecov'
   SimpleCov.start 'rails' do
     add_filter '/spec/'
