@@ -11,6 +11,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
+gem 'redcarpet', '~> 3.5'
 gem 'rolify', '~> 5.3'
 gem 'sass-rails', '>= 6'
 gem 'simple_form', '~> 5.0', '>= 5.0.3'
@@ -36,6 +37,7 @@ end
 
 group :test do
   gem 'capybara', '>= 2.15'
+  gem 'pundit-matchers', '~> 1.6.0'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers', '~> 4.4', '>= 4.4.1'
   gem 'simplecov', '~> 0.19.1', require: false
