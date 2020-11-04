@@ -16,8 +16,8 @@
         </div>
       </div>
     </div>
-    <div class="content"><%= @post.body %>
-
+    <div class="content">
+      <%= markdown(@post.body) %>
     </div>
 
     <h2 class="subtitle is-5 has-text-grey"><%= @post.replies.all.count %> Replies</h2>
