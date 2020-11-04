@@ -14,20 +14,20 @@ class ApplicationPolicy
     false
   end
 
-  def create?
-    false
-  end
-
   def new?
     create?
   end
 
-  def update?
+  def create?
     false
   end
 
   def edit?
     update?
+  end
+
+  def update?
+    false
   end
 
   def destroy?
