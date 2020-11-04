@@ -11,7 +11,7 @@ admin.add_role :almighty
   User.create(
     username: Faker::Games::Dota.hero,
     email: "#{Faker::Games::Dota.hero}@gmail.com",
-    password: '123456'
+    password: '123123'
   )
 end
 
