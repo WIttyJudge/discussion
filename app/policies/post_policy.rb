@@ -1,23 +1,23 @@
 class PostPolicy < ApplicationPolicy
-  def new?
-    user.present?
+  def create?
+    user
   end
 
   def update?
-    user_is_author? || user_is_admin?
+    user_author? || user_almighty?
   end
 
   def destroy?
-    user_is_author? || user_is_admin?
+    user_author? || user_almighty?
   end
 
   private
 
-  def user_is_author?
+  def user_author?
     record.author_id == user&.id
   end
 
-  def user_is_admin?
+  def user_almighty?
     user&.has_cached_role? :almighty
   end
 end
