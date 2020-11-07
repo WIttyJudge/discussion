@@ -17,13 +17,16 @@ Rails.application.routes.draw do
     resources :comments, only: %i[index]
   end
 
-  resources :posts, param: :slug do
+  resources :posts, param: :slug, except: %i[index] do
     resource :replies, only: %i[create]
   end
 
   resources :tags, param: :slug, only: %i[show new create]
 
   get 'signout_confirm', to: 'users#signout_confirm'
+
+  # 404 page
+  match '*unmatched', to: 'errors#page_not_found', via: :all
 
   root 'home#index'
 end
