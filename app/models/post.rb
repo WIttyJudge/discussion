@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   has_many :replies, dependent: :destroy
   has_and_belongs_to_many :tags
 
-  validates :title, presence: true, length: { in: 10..128 }
+  validates :title, presence: true, length: { in: 10..60 }
   validates :body, presence: true
 
   before_save :capitalize_first_char_title, :create_slug
