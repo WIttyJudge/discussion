@@ -1,40 +1,54 @@
 <div class="column is-9">
-  <h3 class="title is-5 has-text-grey-light">Latest Discussions</h3>
+  <h3 class="title is-5 has-text-grey">Latest Discussions</h3>
 
-  <article>
-      <% posts.each do |post| %>
-      <div class="columns box mb-4">
-        <div class="column is-1">
-        privet kak dela
-        </div>
-        <div class="column is-8">
-          <%= link_to post_path(post.slug) do %>
-            <h3 class="title is-5">
-              <%= post.title %>
-            </h3>
-          <% end %>
-          <div class="content">
-            <p><em><small>Posted <%= time_ago_in_words(post.created_at) %> ago
-              by <%= post.author_username %>
-              </small>
-              </em>
+  <% posts.each do |post| %>
+	  <article class="box content">
+
+      <%= link_to post_path(post.slug) do %>
+       <h4 class="title is-5"> <%= post.title %> </h4>
+      <% end %>
+
+	   	<div class="media">
+	   		<div class="media-left">
+	   			<p class="image is-32x32">
+	   				<img src="http://bulma.io/images/placeholders/128x128.png">
+	   			</p>
+	   		</div>
+	   		<div class="media-content">
+	   			<div class="content">
+            <p>
+	   					<a href="#" class="mr-2">
+               <%= post.author_username %>
+              </a> posted <%= time_ago_in_words(post.created_at) %>
             </p>
-          </div>
-        </div>
 
-        <div class="column has-text-right">
+            <p>
+              <% post.tags.each do |tag| %>
+                <%= link_to tag.name, tag_path(tag.slug), class: 'tag' %>
+              <% end %>
+            </p>
+
+	   			  <p>
+             <i class="fa fa-comments mr-1"></i>
+             <span class="mr-1">
+              1
+             </span>
+             comments
+            </p>
+	   			</div>
+	   		</div>
+
+	   		<div class="media-right">
           <% if policy(post).update? %>
-            <%= link_to 'Edit', edit_post_path(post.slug), class:'button' %>
+            <%= link_to 'Edit', edit_post_path(post.slug), class: 'button' %>
           <% end %>
 
           <% if policy(post).destroy? %>
-            <%= link_to 'Delete', post_path(post.slug), method: :delete, data: { confirm: 'Are you sure?' }, class: "button" %>
+            <%= link_to 'Delete', post_path(post.slug), method: 'delete', class: 'button' %>
           <% end %>
-
-        </div>
-
-      </div>
-    <% end %>
-  </article>
+	   		</div>
+	   	</div>
+	  </article>
+  <% end %>
 
 </div>
