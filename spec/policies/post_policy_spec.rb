@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe PostPolicy do
   subject { described_class.new(user, post) }
