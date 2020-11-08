@@ -28,13 +28,16 @@
               <% end %>
             </p>
 
-	   			  <p>
-             <i class="fa fa-comments mr-1"></i>
-             <span class="mr-1">
-              1
-             </span>
-             comments
-            </p>
+            <% if !post.replies.size.zero? %>
+	   			    <p>
+                <i class="fa fa-comments mr-1"></i>
+                <span class="mr-1">
+                 <%= post.replies.size %>
+                </span>
+                comments
+              </p>
+            <% end %>
+
 	   			</div>
 	   		</div>
 
