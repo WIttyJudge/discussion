@@ -1,3 +1,6 @@
 class HomeController < ApplicationController
-  def index; end
+  def index
+    @posts = Post.includes(:author, :tags, :replies).recent
+    @tags = Tag.alphabetical
+  end
 end

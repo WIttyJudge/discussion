@@ -1,3 +1,4 @@
-<% @posts.each do |post| %>
-<% post.title %>
-<% end %>
+<div class="columns">
+  <%= render 'posts/posts', posts: @posts %>
+  <%= render 'tag_info', tag: @tag %>
+</div>

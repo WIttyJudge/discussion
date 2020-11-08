@@ -1,12 +1,7 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
+  before_action :authenticate_user!, except: %i[show]
   before_action :set_author, only: %i[create]
   before_action :set_post, only: %i[show edit destroy]
-
-  def index
-    @posts = Post.includes(:author).recent
-    @tags = Tag.alphabetical
-  end
 
   def show; end
 
@@ -39,7 +34,7 @@ class PostsController < ApplicationController
 
     @post.destroy
     flash[:notice] = 'Post deleted'
-    redirect_to posts_path
+    redirect_to root_path
   end
 
   private

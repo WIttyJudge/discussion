@@ -1,1 +1,4 @@
-<h1>Write posts, stay cool!</h1>
+<div class="columns">
+  <%= render 'posts/posts', posts: @posts %>
+  <%= render 'posts/sidebar', tags: @tags %>
+</div>
