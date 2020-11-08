@@ -3,14 +3,10 @@ class RepliesController < ApplicationController
   before_action :set_post, only: %i[create]
 
   def create
-    @reply = @post.replies.create(params[:reply].permit(:reply, :post_id))
+    @reply = @post.replies.create(reply_params)
     @reply.user_id = current_user.id
 
-    flash[:notice] = 'bad'
-
     return unless @reply.save
-
-    flash[:notice] = 'Okay'
   end
 
   private
@@ -20,6 +16,7 @@ class RepliesController < ApplicationController
   end
 
   def reply_params
-    params.require(:reply).permit(:reply, :user_id, :post_id)
+    params.require(:reply).permit(:reply)
   end
+
 end
