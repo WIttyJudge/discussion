@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_121456) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "guideline", null: false
-    t.string "about", null: false
+    t.string "about", default: "", null: false
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
