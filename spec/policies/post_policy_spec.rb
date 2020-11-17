@@ -21,12 +21,12 @@ describe PostPolicy do
     let(:user) { create(:user) }
     let(:post) { create(:post, author: user) }
 
-    it { should permit_actions(%i[new create edit update destroy]) }
+    it { should permit_actions(%i[new create edit update destroy delete_confirm]) }
   end
 
   describe ".user_almighty?" do
     let(:user) { create(:user, :with_role) }
 
-    it { should permit_actions(%i[new create edit update destroy]) }
+    it { should permit_actions(%i[new create edit update destroy delete_confirm]) }
   end
 end

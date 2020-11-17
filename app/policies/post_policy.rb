@@ -11,6 +11,10 @@ class PostPolicy < ApplicationPolicy
     user_author? || user_almighty?
   end
 
+  def delete_confirm?
+    destroy?
+  end
+
   private
 
   def user_author?

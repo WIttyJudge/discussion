@@ -7,3 +7,28 @@ AllCops:
     - tmp/**/*
     - vendor/**/*
   DisplayStyleGuide: true
+
+# *********************** Layouts **************************
+# https://docs.rubocop.org/rubocop/cops_layout.html
+
+Layout/LineLength:
+  Description: "Checks that line length does not exceed the configured limit."
+  AutoCorrect: true # this is false by default
+  Exclude:
+    - Gemfile
+
+# *********************** Styles ***************************
+# https://docs.rubocop.org/rubocop/cops_style.html
+
+Style/FrozenStringLiteralComment:
+  Description: >-
+    Add the frozen_string_literal comment to the top of files
+    to help transition to frozen string literals by default.
+  Enabled: true
+  EnforcedStyle: never
+
+Style/StringLiterals:
+  Description: "Checks if uses of quotes match the configured preference."
+  StyleGuide: "#consistent-string-literals"
+  Enabled: true
+  ConsistentQuotesInMultiline: true

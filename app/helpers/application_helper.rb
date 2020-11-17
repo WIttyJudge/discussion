@@ -1,6 +1,8 @@
 require 'redcarpet'
 
 module ApplicationHelper
+  include Pagy::Frontend
+
   def markdown(text)
     options = {
       autolink: true,
