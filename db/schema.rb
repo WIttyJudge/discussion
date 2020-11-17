@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 2020_11_07_121456) do
     t.string "reply", null: false
     t.bigint "post_id"
     t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["post_id"], name: "index_replies_on_post_id"
     t.index ["user_id"], name: "index_replies_on_user_id"
   end
@@ -55,7 +57,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_121456) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "guideline", null: false
-    t.string "about", default: "", null: false
+    t.string "about", null: false
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 

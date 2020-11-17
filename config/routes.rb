@@ -18,11 +18,15 @@ Rails.application.routes.draw do
   end
 
   resources :posts, param: :slug, except: %i[index] do
+    get 'delete_confirm', on: :member
+
     resource :replies, only: %i[create]
   end
 
   resources :tags, param: :slug, only: %i[show new create]
 
+  get 'settings/(:tab)', to: 'users#edit', as: 'user_settings'
+  post 'request_destroy', to: 'users#request_destroy'
   get 'signout_confirm', to: 'users#signout_confirm'
 
   # 404 page

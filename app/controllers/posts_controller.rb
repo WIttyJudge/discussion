@@ -1,7 +1,9 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: %i[show]
   before_action :set_author, only: %i[create]
-  before_action :set_post, only: %i[show edit destroy]
+  before_action :set_post, only: %i[
+    show edit destroy delete_confirm
+  ]
 
   def show; end
 
@@ -35,6 +37,10 @@ class PostsController < ApplicationController
     @post.destroy
     flash[:notice] = 'Post deleted'
     redirect_to root_path
+  end
+
+  def delete_confirm
+    authorize @post
   end
 
   private

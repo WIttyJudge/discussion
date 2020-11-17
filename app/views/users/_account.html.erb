@@ -1,0 +1,15 @@
+<div class="box">
+  <h1 class="title is-4 has-text-danger-dark">Danger Zone</h1>
+
+  <b class="title is-5">Delete Account</b>
+
+  <p>Deleting your account will: </p>
+  <div class="content">
+    <ul>
+      <li>delete any and all content you have, such as articles, comments, your reading list or chat messages.</li>
+      <li>allow your username to become available to anyone.</li>
+    </ul>
+  </div>
+
+  <%= button_to "Delete Account", request_destroy_path, class: 'button has-background-danger-dark has-text-white' %>
+</div>

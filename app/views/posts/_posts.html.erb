@@ -47,11 +47,14 @@
           <% end %>
 
           <% if policy(post).destroy? %>
-            <%= link_to 'Delete', post_path(post.slug), method: 'delete', class: 'button' %>
+            <%= link_to 'Delete', delete_confirm_post_url(post.slug), class: 'button' %>
           <% end %>
 	   		</div>
 	   	</div>
 	  </article>
   <% end %>
+
+  <%# render pagination for home posts %>
+  <%== render 'pagy/post-nav', pagy: @pagy if @pagy.pages > 1 %>
 
 </div>
