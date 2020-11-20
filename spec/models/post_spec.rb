@@ -1,7 +1,6 @@
 require "rails_helper"
 
 RSpec.describe Post, :type => :model do
-
   let(:post) { create(:post) }
 
   describe "associations" do
@@ -56,5 +55,4 @@ RSpec.describe Post, :type => :model do
       expect(Post.recent.pluck(:created_at)).not_to eq([post1.created_at, post2.created_at])
     end
   end
-
 end
