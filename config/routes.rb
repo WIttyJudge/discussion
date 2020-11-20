@@ -27,7 +27,9 @@ Rails.application.routes.draw do
 
   get 'settings/(:tab)', to: 'users#edit', as: 'user_settings'
   post 'request_destroy', to: 'users#request_destroy'
-  get 'signout_confirm', to: 'users#signout_confirm'
+  delete 'users/destroy/:username', to: 'users#destroy', as: 'user_destroy'
+  get 'confirm_destroy/:token', to: 'users#confirm_destroy', as: 'confirm_destroy'
+  get 'confirm_signout', to: 'users#confirm_signout'
 
   # 404 page
   match '*unmatched', to: 'errors#page_not_found', via: :all

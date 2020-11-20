@@ -18,7 +18,11 @@ Rails.application.configure do
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
-    config.cache_store = :memory_store
+    # Redis caching store
+    # redis-rails gem
+    DEFAULT_EXPIRATION = 1.hour.to_i.freeze
+    config.cache_store = :redis_cache_store, { url: ENV["REDIS_URL"], expires_in: DEFAULT_EXPIRATION }
+
     config.public_file_server.headers = {
       'Cache-Control' => "public, max-age=#{2.days.to_i}"
     }
@@ -62,4 +66,9 @@ Rails.application.configure do
 
   # Devise mailer
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # Mailcatcher
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: '128.0.0.1', port: 1025, domain: '127.0.0.1' }
 end

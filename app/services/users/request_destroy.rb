@@ -5,9 +5,11 @@ module Users
     end
 
     def call
-      # Создать уникальный ключ expired 24 часа.
+      destroy_token = SecureRandom.hex(10)
 
-      # Отправить сообщение по почте о подтвеждении удаления.
+      Rails.cache.write("user-destroy-token:#{user.id}", destroy_token, expires_in: 12.hours.to_i)
+
+      NotifyMailer.with(user: user, destroy_token: destroy_token).confirm_destroy_account.deliver_now
     end
 
     private

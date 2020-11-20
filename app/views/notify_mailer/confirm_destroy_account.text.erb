@@ -1,4 +1,8 @@
-Hello <%= @user.username %>, are you sure you want to delete your account?
-=========================================================================
+Hi <%= @user.username %>,
 
-Have a good day!
+Your account deletion was requested. Please, visit this page
+<%= confirm_destroy_url(@destroy_token) %> to destroy your account.
+The link will expire in 12 hours.
+
+Thanks,
+The Discussion Team
