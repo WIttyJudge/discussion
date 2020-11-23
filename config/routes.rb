@@ -23,11 +23,14 @@ Rails.application.routes.draw do
     resource :replies, only: %i[create]
   end
 
+  resources :users, only: %i[destroy update]
+
   resources :tags, param: :slug, only: %i[show new create]
 
   get 'settings/(:tab)', to: 'users#edit', as: 'user_settings'
   post 'request_destroy', to: 'users#request_destroy'
-  delete 'users/destroy/:username', to: 'users#destroy', as: 'user_destroy'
+  # delete 'users/destroy/:username', to: 'users#destroy', as: 'user_destroy'
+  # patch 'users/:username', to: 'users#update'
   get 'confirm_destroy/:token', to: 'users#confirm_destroy', as: 'confirm_destroy'
   get 'confirm_signout', to: 'users#confirm_signout'
 

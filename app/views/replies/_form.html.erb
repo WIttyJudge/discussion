@@ -1,5 +1,5 @@
 <div class="mb-6">
-  <%= simple_form_for([post, post.replies.build], url: post_replies_path(post.slug)) do |f| %>
+  <%= simple_form_for([post, post.replies], url: post_replies_path(post.slug)) do |f| %>
 
     <div class="field">
       <div class="control">

@@ -1,19 +1,28 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, only: %i[edit]
   before_action :set_settings_tab, only: %i[edit]
-  before_action :set_user, only: %i[
-    request_destroy confirm_destroy
+  before_action :set_current_user, only: %i[
+    edit request_destroy confirm_destroy
   ]
+  before_action :set_user, only: %i[update]
 
   # GET /settings/:tab
   def edit; end
 
-  # GET /confirm_signout
-  def  confirm_signout; end
+  # PATCH /users/:id
+  def update
+    return unless @user
+
+    if @user.update(user_update_params)
+      text = 'Your profile was successfully updated.'
+      flash[:notice] = text
+      redirect_to user_settings_path('profile')
+    end
+  end
 
   def request_destroy
     if user_destroy_token_exists?
-      text = "You have already requested deletion. Please, check your email for further instructions"
+      text = "You have already requested deletion. Please, check your email for further instructions."
       flash[:notice] = text
       redirect_to user_settings_path('account')
       return
@@ -34,14 +43,25 @@ class UsersController < ApplicationController
     sign_out @user
   end
 
+  # GET /confirm_signout
+  def  confirm_signout; end
+
   private
 
   def set_settings_tab
     @tab = params[:tab] || 'profile'
   end
 
-  def set_user
+  def set_current_user
     @user = current_user
+  end
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_update_params
+    params.require(:user).permit(:email, :username, :summery)
   end
 
   def user_destroy_token_exists?
