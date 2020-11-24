@@ -1,36 +1,23 @@
+<%= simple_form_for @user, url: user_path(@user.id), method: :patch do |f| %>
+  <div class="box">
+    <h1 class="title is-4">User</h1>
 
-        <div class="card">
-          <div class="card-header"><p class="card-header-title">Header</p></div>
-          <div class="card-content"><div class="content">Content</div></div>
-        </div>
-        <br />
+      <div class="mb-4">
+        <%= f.input :email, input_html: { class: 'input', placeholder: 'john@gmail.com', value: @user.email }, wrapper: false, label_html: { class: "has-text-weight-normal label" } %>
+      </div>
 
-        <div class="card is-hidden1">
-          <div class="card-header"><p class="card-header-title">Header</p></div>
-          <div class="card-content"><div class="content">Content</div></div>
-        </div>
-        <br />
+      <%= f.input :username, input_html: { class: 'input', placeholder: 'super-john', value: @user.username }, wrapper: false, label_html: { class: "has-text-weight-normal label" } %>
+  </div>
 
-        <div class="card is-hidden1">
-          <div class="card-header"><p class="card-header-title">Header</p></div>
-          <div class="card-content"><div class="content">Content</div></div>
-        </div>
-        <br />
+  <div class="box">
+    <h1 class="title is-4">Basic</h1>
 
-        <div class="card is-hidden1">
-          <div class="card-header"><p class="card-header-title">Header</p></div>
-          <div class="card-content"><div class="content">Content</div></div>
-        </div>
-        <br />
+      <div class="mb-4">
+        <%= f.input :summery, as: :text, input_html: { class: 'textarea', placeholder: 'A short bio..', value: @user.summery , rows: 2 }, wrapper: false, label_html: { class: "has-text-weight-normal label" } %>
+      </div>
 
-        <div class="card is-hidden1">
-          <div class="card-header"><p class="card-header-title">Header</p></div>
-          <div class="card-content"><div class="content">Content</div></div>
-        </div>
-        <br />
+  </div>
 
-        <div class="card is-hidden1">
-          <div class="card-header"><p class="card-header-title">Header</p></div>
-          <div class="card-content"><div class="content">Content</div></div>
-        </div>
-        <br />
+  <%= f.button :submit, 'Save Profile Information', class: 'button is-info', style: 'min-width: 100%' %>
+
+<% end %>
