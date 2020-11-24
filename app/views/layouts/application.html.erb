@@ -11,7 +11,7 @@
 
   </head>
 
-  <body class="has-background-white-bis" style="min-height: 100vh;">
+  <body class="has-background-white-bis" style="min-height: 100vh; padding-top: 48px;">
     <% if flash[:notice] %>
       <div class="notification is-success global-notification">
         <p class="notice"><%= notice %></p>
@@ -24,7 +24,7 @@
     </div>
     <% end %>
 
-     <nav class="navbar  role="navigation" aria-label="main navigation">
+     <nav class="navbar is-fixed-top"  role="navigation" aria-label="main navigation">
      <div class="container">
       <div class="navbar-brand">
         <%= link_to root_path, class:"navbar-item" do %>
@@ -93,7 +93,7 @@
   </nav>
 
     <section class="section ">
-      <div class="container">
+      <div class="container" style="margin-bottom: 100px;">
         <%= yield %>
       </div>
     </section>

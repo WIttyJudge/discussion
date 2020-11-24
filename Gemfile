@@ -10,7 +10,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'pagy', '~> 3.5'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
-gem 'pundit'
+gem 'pundit', '~> 2.1'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
 gem 'redcarpet', '~> 3.5'
 gem 'redis-rails', '~> 5.0', '>= 5.0.2'
@@ -28,6 +28,7 @@ group :development, :test do
   gem 'rails_best_practices', '~> 1.20'
   gem 'rspec-rails', '~> 4.0', '>= 4.0.1' # RSpec is a testing framework
   gem 'rubocop', '~> 1.0.0', require: false
+  gem 'rubocop-rspec', '~> 2.0', require: false
 end
 
 group :development do

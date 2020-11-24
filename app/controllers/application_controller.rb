@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     # render file: 'errors/403', status: :forbidden, layout: false
-    flash[:alert] = "You are not authorized to perform this action."
+    flash[:alert] = 'You are not authorized to perform this action.'
     redirect_to root_path
   end
 end

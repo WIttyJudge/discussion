@@ -7,4 +7,3 @@ FactoryBot.define do
     description { "text" }
   end
 end
-

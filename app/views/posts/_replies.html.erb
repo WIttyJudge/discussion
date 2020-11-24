@@ -9,7 +9,7 @@
       <div class="media-content">
         <div class="content">
           <p>
-            <strong class="mr-2"><%= reply.user.username %></strong>
+            <strong class="mr-2"><%= reply.user_username %></strong>
             <small><%= time_ago_in_words(reply.created_at) %></small>
 
             <%= markdown(reply.reply) %>
