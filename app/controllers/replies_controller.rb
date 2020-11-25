@@ -18,5 +18,4 @@ class RepliesController < ApplicationController
   def reply_params
     params.require(:reply).permit(:reply)
   end
-
 end

@@ -1,4 +1,3 @@
-
 class Seeder
   def initialize
     @counter = 0
@@ -61,16 +60,22 @@ seeder.create_if_none(Reply, replies_count) do
 end
 
 seeder.create_if_none(Tag, 2) do
-  Tag.create!([
-    {
-      name: 'linux',
-      guideline: 'Articles and discussions should be directly related to Linux operating systems.',
-      about: 'Linux is a family of free and open source operating systems built on top of the Linux kernel, first released on 1991 by Linus Torvalds.'
-    },
-    {
-      name: 'database',
-      guideline: 'Articles should be related to database development, performance, scalability, optimisation or data analysis, or using sql to query data.',
-      about: 'A database is an organized collection of data, generally stored and accessed electronically from a computer system.'
-    },
-  ])
+  Tag.create!(
+    [
+      {
+        name: 'linux',
+        guideline: 'Articles and discussions should be directly
+        related to Linux operating systems.',
+        about: 'Linux is a family of free and open source operating systems built
+        on top of the Linux kernel, first released on 1991 by Linus Torvalds.'
+      },
+      {
+        name: 'database',
+        guideline: 'Articles should be related to database development,
+        performance, scalability, optimisation or data analysis, or using sql to query data.',
+        about: 'A database is an organized collection of data,
+        generally stored and accessed electronically from a computer system.'
+      }
+    ]
+  )
 end

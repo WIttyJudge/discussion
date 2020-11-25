@@ -2,34 +2,31 @@ class UsersController < ApplicationController
   before_action :authenticate_user!, only: %i[edit]
   before_action :set_settings_tab, only: %i[edit]
   before_action :set_current_user, only: %i[
-    edit request_destroy confirm_destroy
+    edit update request_destroy confirm_destroy destroy
   ]
-  before_action :set_user, only: %i[update]
 
   # GET /settings/:tab
   def edit; end
 
-  # PATCH /users/:id
+  # PUT/PATCH /users/:id
   def update
-    return unless @user
+    return unless @user.update(user_update_params)
 
-    if @user.update(user_update_params)
-      text = 'Your profile was successfully updated.'
-      flash[:notice] = text
-      redirect_to user_settings_path('profile')
-    end
+    text = 'Your profile was successfully updated.'
+    flash[:notice] = text
+    redirect_to user_settings_path('profile')
   end
 
   def request_destroy
     if user_destroy_token_exists?
-      text = "You have already requested deletion. Please, check your email for further instructions."
+      text = 'You have already requested deletion. Please, check your email for further instructions.'
       flash[:notice] = text
       redirect_to user_settings_path('account')
       return
     end
 
     Users::RequestDestroy.call(@user)
-    text = "A request to delete your account has been created. Please, check your email for further instructions."
+    text = 'A request to delete your account has been created. Please, check your email for further instructions.'
     flash[:notice] = text
     redirect_to user_settings_path('account')
   end
@@ -44,7 +41,7 @@ class UsersController < ApplicationController
   end
 
   # GET /confirm_signout
-  def  confirm_signout; end
+  def confirm_signout; end
 
   private
 
@@ -54,10 +51,7 @@ class UsersController < ApplicationController
 
   def set_current_user
     @user = current_user
-  end
-
-  def set_user
-    @user = User.find(params[:id])
+    authorize @user, policy_class: UserPolicy
   end
 
   def user_update_params
@@ -69,6 +63,6 @@ class UsersController < ApplicationController
   end
 
   def not_found
-    raise ActionController::RoutingError, "Not Found"
+    raise ActionController::RoutingError, 'Not Found'
   end
 end

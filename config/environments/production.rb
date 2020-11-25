@@ -51,11 +51,11 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = %i[request_id]
 
   # Use a different cache store in production.
-  DEFAULT_EXPIRATION = 1.hour.to_i.freeze
-  config.cache_store = :redis_cache_store, { url: ENV["REDIS_URL"], expires_in: DEFAULT_EXPIRATION }
+  default_expiration = 1.hour.to_i.freeze
+  config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'], expires_in: default_expiration }
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
@@ -81,8 +81,8 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
+    logger           = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
