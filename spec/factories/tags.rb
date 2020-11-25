@@ -3,7 +3,7 @@ FactoryBot.define do
   factory :tag do
     name { generate(:name) }
     # TODO: Add faker to guideline and decription
-    guideline { "text" }
-    description { "text" }
+    guideline { 'text' }
+    description { 'text' }
   end
 end

@@ -61,19 +61,19 @@ end
 
 seeder.create_if_none(Tag, 2) do
   Tag.create!([
-    {
-      name: 'linux',
-      guideline: 'Articles and discussions should be directly
+                {
+                  name: 'linux',
+                  guideline: 'Articles and discussions should be directly
         related to Linux operating systems.',
-      about: 'Linux is a family of free and open source operating systems built
+                  about: 'Linux is a family of free and open source operating systems built
         on top of the Linux kernel, first released on 1991 by Linus Torvalds.'
-    },
-    {
-      name: 'database',
-      guideline: 'Articles should be related to database development,
+                },
+                {
+                  name: 'database',
+                  guideline: 'Articles should be related to database development,
         performance, scalability, optimisation or data analysis, or using sql to query data.',
-      about: 'A database is an organized collection of data,
+                  about: 'A database is an organized collection of data,
         generally stored and accessed electronically from a computer system.'
-    }
-  ])
+                }
+              ])
 end

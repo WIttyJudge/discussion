@@ -20,8 +20,8 @@ Rails.application.configure do
 
     # Redis caching store
     # redis-rails gem
-    DEFAULT_EXPIRATION = 1.hour.to_i.freeze
-    config.cache_store = :redis_cache_store, { url: ENV["REDIS_URL"], expires_in: DEFAULT_EXPIRATION }
+    default_expiration = 1.hour.to_i.freeze
+    config.cache_store = :redis_cache_store, { url: ENV['REDIS_URL'], expires_in: default_expiration }
 
     config.public_file_server.headers = {
       'Cache-Control' => "public, max-age=#{2.days.to_i}"

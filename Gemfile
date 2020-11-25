@@ -28,6 +28,8 @@ group :development, :test do
   gem 'rails_best_practices', '~> 1.20'
   gem 'rspec-rails', '~> 4.0', '>= 4.0.1' # RSpec is a testing framework
   gem 'rubocop', '~> 1.0.0', require: false
+  gem 'rubocop-performance', '~> 1.9', require: false
+  gem 'rubocop-rails', '~> 2.8', '>= 2.8.1'
   gem 'rubocop-rspec', '~> 2.0', require: false
 end
 

@@ -5,7 +5,7 @@ describe ApplicationPolicy do
 
   let(:record) { create(:post) }
 
-  describe "REST methods" do
+  describe 'REST methods' do
     let(:user) { create(:user) }
 
     it { is_expected.to forbid_actions(%i[index show new create edit update destroy]) }

@@ -12,6 +12,6 @@ task(:rubocop) do
   cli.run
 end
 
-task default: [:test, :rubocop]
+task default: %i[test rubocop]
 
 Rails.application.load_tasks

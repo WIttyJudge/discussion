@@ -1,4 +1,6 @@
 require:
+  - rubocop-performance
+  - rubocop-rails
   - rubocop-rspec
 
 AllCops:
@@ -10,6 +12,7 @@ AllCops:
     - tmp/**/*
     - vendor/**/*
   DisplayStyleGuide: true
+  NewCops: enable
 
 # *********************** Bundler **************************
 # https://docs.rubocop.org/rubocop/cops_bundler.html
@@ -33,6 +36,13 @@ Layout/LineLength:
   AutoCorrect: true # this is false by default
   Exclude:
     - Gemfile
+
+# *********************** Lint **************************
+# https://docs.rubocop.org/rubocop/cops_lint.html
+
+Lint/MissingSuper:
+  Exclude:
+    - app/services/**/*
 
 # *********************** Styles ***************************
 # https://docs.rubocop.org/rubocop/cops_style.html
