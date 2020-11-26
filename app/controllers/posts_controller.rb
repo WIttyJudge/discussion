@@ -16,9 +16,12 @@ class PostsController < ApplicationController
 
   def create
     authorize Post
-
     @post = @author.posts.create(post_params)
-    return unless @post
+
+    unless @post.save
+      render :new
+      return
+    end
 
     text = 'Post successfuly create'
     flash[:notice] = text
