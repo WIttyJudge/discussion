@@ -5,16 +5,30 @@ class UsersController < ApplicationController
     edit update request_destroy confirm_destroy destroy
   ]
 
+  # Pages in settings panel.
+  # This is used in app/views/users/edit.html.erb
+  SETTINGS_MENU_ITEMS = [
+    { name: 'profile' },
+    { name: 'account' }
+  ].freeze
+
   # GET /settings/:tab
   def edit; end
 
   # PUT/PATCH /users/:id
   def update
-    return unless @user.update(user_update_params)
+    @user.update(user_update_params)
+
+    unless @user.save
+      error = @user.errors.full_messages.first
+      flash[:alert] = error
+      redirect_to user_settings_path
+      return
+    end
 
     text = 'Your profile was successfully updated.'
     flash[:notice] = text
-    redirect_to user_settings_path('profile')
+    redirect_to user_settings_path
   end
 
   def request_destroy
@@ -55,7 +69,7 @@ class UsersController < ApplicationController
   end
 
   def user_update_params
-    params.require(:user).permit(:email, :username, :summery)
+    params.require(:user).permit(:email, :username, :summery, :location)
   end
 
   def user_destroy_token_exists?
