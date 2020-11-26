@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :replies
 
   validates :username, presence: true
+  validates :summery, length: { maximum: 200 }
 end
