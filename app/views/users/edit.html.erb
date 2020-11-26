@@ -1,25 +1,15 @@
-<section class="main-content columns is-fullheight">
-
-  <div class="container column is-9">
-    <div class="section">
-
-      <%= render "users/settings/#{@tab}" %>
-
-    </div>
+<div class="columns">
+  <div class="column is-9">
+    <%= render "users/settings/#{@tab}" %>
   </div>
 
-  <aside class="column is-3 is-narrow-mobile is-fullheight section is-hidden-mobile">
-    <ul class="menu-list">
-      <li>
-        <%= link_to "Profile", user_settings_url('profile') %>
-      </li>
-      <li>
-        <%= link_to "Test", user_settings_url('test') %>
-      </li>
-      <li>
-        <%= link_to "Account", user_settings_url('account') %>
-      </li>
-    </ul>
-  </aside>
-
-</section>
+  <div class="column is-3 is-narrow-mobile is-fullheight is-hidden-mobile">
+    <aside class="menu">
+      <ul class="list">
+        <% UsersController::SETTINGS_MENU_ITEMS.each do |menu_item| %>
+          <li class="mb-2"> <%= link_to menu_item[:name].titleize, user_settings_path(menu_item[:name]), class: 'has-text-dark' %> </li>
+        <% end %>
+      </ul>
+    </aside>
+  </div>
+</div>

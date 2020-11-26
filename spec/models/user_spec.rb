@@ -8,5 +8,6 @@ RSpec.describe User, :type => :model do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:username) }
+    it { is_expected.to validate_length_of(:summery).is_at_most(200) }
   end
 end
