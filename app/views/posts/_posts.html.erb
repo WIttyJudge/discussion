@@ -28,15 +28,20 @@
               <% end %>
             </p>
 
-            <% if !post.replies.size.zero? %>
-	   			    <p>
+            <p>
+              <%= link_to post_path(post.slug, anchor: 'comments'), class: 'has-text-grey-dark' do %>
                 <i class="fa fa-comments mr-1"></i>
-                <span class="mr-1">
-                 <%= post.replies.size %>
-                </span>
-                comments
-              </p>
-            <% end %>
+                <% if post.replies.any? %>
+                  <span>
+                    <%= pluralize(post.replies.size, 'comment') %>
+                  </span>
+                <% else %>
+                  <span>
+                    Add comments
+                  </span>
+                <% end %>
+              <% end %>
+            </p>
 
 	   			</div>
 	   		</div>
