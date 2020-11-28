@@ -5,114 +5,55 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin - Free Bulma template</title>
+    <title>Discussio Admin - <%= controller_name.titleize %></title>
+    <%= csrf_meta_tags %>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <!-- Bulma Version 0.9.0-->
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.9.0/css/bulma.min.css" />
+    <%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <body>
 
-    <!-- START NAV -->
+  <div class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-2">
+          <aside class="menu is-hidden-mobile">
 
-     <nav class="navbar  role="navigation" aria-label="main navigation">
-     <div class="container">
-      <div class="navbar-brand">
-        <%= link_to root_path, class:"navbar-item" do %>
-          <h1 class="title is-5">Discussions Admin</h1>
-        <% end  %>
-      <div class="navbar-burger burger" data-target="navbar">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
+          <%= link_to "Back to app", root_path, class: 'button is-info is-outlined mb-4' %>
 
-      <div id="navbar" class="navbar-menu">
-        <div class="navbar-start">
-          <%= link_to "Posts", root_path, class: "navbar-item" %>
+            <ul class="menu-list">
+              <% Admin::BaseController::MENU_ITEMS.each do |menu_item|%>
+                <li>
+                  <a href="/admin/<%= menu_item[:controller] %>">
+                    <%= menu_item[:name].titleize %>
+                  </a>
+                </li>
+              <% end %>
+            </ul>
+          </aside>
         </div>
 
-        <div class="navbar-end">
-          <% if user_signed_in? %>
-
-          </div>
-          <div class="navbar-item has-dropdown is-hoverable">
-            <%= link_to 'Account', edit_user_registration_path, class: "navbar-link" %>
-            <div class="navbar-dropdown is-right">
-              <%= link_to current_user.username, edit_user_registration_path, class:"navbar-item" %>
-
-              <p class="navbar-item">Dashboard</p>
-
-              <%= link_to "Write a post", new_post_path, class: "navbar-item" %>
-
-              <hr class="navbar-divider">
-              <%= link_to "Sign out",  confirm_signout_path, class: "navbar-item" %>
+        <div class="column is-10">
+          <% if flash[:notice] %>
+            <div class="notification is-success is-light has-text-centered ">
+            <button class="delete" onclick="this.parentElement.style.display = 'none'" ></button>
+            <p><%= notice %></p>
             </div>
-          </div>
-
-         <% else %>
-
-         <div class="navbar-item">
-          <div class="field is-grouped">
-
-            <p class="control">
-              <%= link_to "Log in", login_path, class: "button is-light"%>
-            </p>
-
-            <p class="control">
-              <%= link_to "Create account", new_user_registration_path, class: "button is-light" %>
-            </p>
-          </div>
-          </div>
-
           <% end %>
 
+          <%= yield %>
         </div>
+
+      </div>
     </div>
-    </div>
-  </nav>
-    <!-- END NAV -->
-    <div class="container">
-        <div class="columns">
-            <div class="column is-3 ">
-                <aside class="menu is-hidden-mobile">
-                    <p class="menu-label">
-                        General
-                    </p>
-                    <ul class="menu-list">
+  </div>
 
-                    <% Admin::BaseController::MENU_ITEMS.each do |menu_item|%>
-                      <li>
-                        <a href="/admin/<%= menu_item[:controller] %>">
-                          <%= menu_item[:name].titleize %>
-                        </a>
-                      </li>
-                    <% end %>
-
-                    <p class="menu-label">
-                        Administration
-                    </p>
-                    <ul class="menu-list">
-                        <li><a>Team Settings</a></li>
-                        <li>
-                            <a>Manage Your Team</a>
-                            <ul>
-                                <li><a>Members</a></li>
-                                <li><a>Plugins</a></li>
-                                <li><a>Add a member</a></li>
-                                <li><a>Remove a member</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </aside>
-            </div>
-
-            <%= yield %>
-
-        </div>
-    </div>
 </body>
 
 </html>
