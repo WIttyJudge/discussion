@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', to: redirect('/admin/posts')
 
-    resources :posts, only: %i[index]
-    resources :comments, only: %i[index]
+    resources :posts, param: :slug, only: %i[index destroy]
+    resources :replies, only: %i[index destroy]
   end
 
   resources :posts, param: :slug, except: %i[index] do
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resource :replies, only: %i[create]
   end
 
-  resources :users, only: %i[destroy update]
+  resources :users, only: %i[update destroy]
 
   resources :tags, param: :slug, only: %i[show new create]
 
