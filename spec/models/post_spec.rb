@@ -15,7 +15,7 @@ RSpec.describe Post, :type => :model do
     it do
       expect(subject).to validate_length_of(:title)
         .is_at_least(10)
-        .is_at_most(60)
+        .is_at_most(100)
     end
 
     it { is_expected.to validate_presence_of(:body) }
