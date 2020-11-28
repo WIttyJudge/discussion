@@ -23,7 +23,7 @@ class PostsController < ApplicationController
       return
     end
 
-    text = 'Post successfuly create'
+    text = 'Post was successfully created.'
     flash[:notice] = text
     redirect_to post_path(@post.slug)
   end
@@ -38,7 +38,7 @@ class PostsController < ApplicationController
     authorize @post
 
     @post.destroy
-    flash[:notice] = 'Post deleted'
+    flash[:notice] = 'Post was successfully deleted.'
     redirect_to root_path
   end
 

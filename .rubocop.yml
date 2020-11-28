@@ -47,21 +47,15 @@ Lint/MissingSuper:
 # *********************** Styles ***************************
 # https://docs.rubocop.org/rubocop/cops_style.html
 
+Style/Documentation:
+  Enabled: false
+
 Style/FrozenStringLiteralComment:
   Description: >-
     Add the frozen_string_literal comment to the top of files
     to help transition to frozen string literals by default.
   Enabled: true
   EnforcedStyle: never
-
-Style/StringLiterals:
-  Description: "Checks if uses of quotes match the configured preference."
-  StyleGuide: "#consistent-string-literals"
-  Enabled: true
-  ConsistentQuotesInMultiline: true
-
-Style/Documentation:
-  Enabled: false
 
 Style/HashSyntax:
   Description: >-
@@ -75,3 +69,9 @@ Style/RedundantInterpolation:
   Description: >-
     This cop checks for strings that are just an interpolated expression.
   Enabled: false
+
+Style/StringLiterals:
+  Description: "Checks if uses of quotes match the configured preference."
+  StyleGuide: "#consistent-string-literals"
+  Enabled: true
+  ConsistentQuotesInMultiline: true
