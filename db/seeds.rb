@@ -43,7 +43,7 @@ seeder.create_if_none(User, 4) do
   3.times do
     User.create!(
       username: Faker::Name.name,
-      email: "#{Faker::Internet.email}",
+      email: Faker::Internet.unique.email,
       password: '123123'
     )
   end
