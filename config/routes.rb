@@ -12,8 +12,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', to: redirect('/admin/posts')
 
-    resources :posts, param: :slug, only: %i[index destroy]
+    resources :posts, param: :slug, except: %i[show edit update]
     resources :replies, only: %i[index destroy]
+    resources :tags, param: :slug, only: %i[index]
   end
 
   resources :posts, param: :slug, except: %i[index] do
