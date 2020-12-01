@@ -2,7 +2,8 @@
     <h1 class="title is-4 is-marginless"><%= controller_name.titleize %></h1>
     <button class="button is-info">New Post</button>
   </div>
-  <hr >
+
+  <hr class="navbar-divider my-4">
 
   <table class="table is-fullwidth">
     <thead>
@@ -10,20 +11,25 @@
         <th>ID</th>
         <th>Title</th>
         <th>Author</th>
-        <th>Created</th>
+        <th>Created at</th>
+
+        <th></th>
+        <th></th>
       </tr>
     </thead>
 
     <tbody>
       <% @posts.each do |post| %>
-        <tr >
+        <tr>
           <th class="has-text-weight-normal"><%= post.id %></th>
 		      <th class="has-text-weight-normal"><%= post.title %></th>
 		      <th class="has-text-weight-normal"><%= post.author_username %></th>
           <th class="has-text-weight-normal"><%= post.created_at %></th>
 
           <th class="has-text-weight-normal">Edit</th>
-          <th class="has-text-weight-normal"><%= link_to "Delete", admin_post_path(post.slug), method: :delete, data: { confirm: 'Are you sure?' } %></th>
+          <th class="has-text-weight-normal">
+            <%= link_to "Delete", admin_post_path(post.slug), method: :delete, data: { confirm: 'Are you sure?' }, class: 'has-text-danger-dark' %>
+          </th>
         </tr>
       <% end %>
     </tbody>
