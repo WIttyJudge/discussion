@@ -2,16 +2,19 @@
     <h1 class="title is-4 is-marginless"><%= controller_name.titleize %></h1>
     <button class="button is-info">New Reply</button>
   </div>
-  <hr >
+
+  <hr class="navbar-divider my-4">
 
   <table class="table is-fullwidth">
     <thead>
       <tr>
         <th>ID</th>
         <th>Reply</th>
-        <th>Post ID</th>
         <th>Author</th>
         <th>Created at</th>
+
+        <th></th>
+        <th></th>
       </tr>
     </thead>
 
@@ -20,12 +23,13 @@
         <tr>
           <th class="has-text-weight-normal"><%= reply.id %></th>
           <th class="has-text-weight-normal"><%= reply.reply %></th>
-          <th class="has-text-weight-normal"><%= reply.post_id %></th>
           <th class="has-text-weight-normal"><%= reply.user_username %></th>
           <th class="has-text-weight-normal"><%= reply.created_at %></th>
 
           <th class="has-text-weight-normal">Edit</th>
-          <th class="has-text-weight-normal">Delete</th>
+          <th class="has-text-weight-normal">
+            <%= link_to 'Delete', admin_reply_path(reply.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'has-text-danger-dark' %>
+          </th>
         </tr>
       <% end %>
     </tbody>
