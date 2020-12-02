@@ -28,20 +28,31 @@
               <% end %>
             </p>
 
-            <p>
-              <%= link_to post_path(post.slug, anchor: 'comments'), class: 'has-text-grey-dark' do %>
-                <i class="fa fa-comments mr-1"></i>
-                <% if post.replies.any? %>
-                  <span>
-                    <%= pluralize(post.replies.size, 'comment') %>
-                  </span>
-                <% else %>
-                  <span>
-                    Add comments
-                  </span>
-                <% end %>
-              <% end %>
-            </p>
+            <nav class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <p>
+                    <%= link_to post_path(post.slug, anchor: 'comments'), class: 'has-text-grey-dark' do %>
+                      <i class="fa fa-comments mr-2"></i>
+                      <% if post.replies.any? %>
+                        <span>
+                          <%= pluralize(post.replies.size, 'comment') %>
+                        </span>
+                      <% else %>
+                        <span>
+                          Add comments
+                        </span>
+                      <% end %>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
+              <div class="level-right">
+                <div class="level-item">
+                  <button class="button is-light">Save</button>
+                </div>
+              </div>
+            </nav>
 
 	   			</div>
 	   		</div>
