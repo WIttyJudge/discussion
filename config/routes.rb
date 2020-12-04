@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resource :replies, only: %i[create]
   end
 
-  resources :users, only: %i[update destroy]
+  resources :users, param: :username, only: %i[show update destroy]
 
   resources :tags, param: :slug, only: %i[show new create]
 
