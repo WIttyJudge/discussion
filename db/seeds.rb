@@ -31,8 +31,10 @@ end
 
 seeder = Seeder.new
 
-seeder.create_if_none(User, 4) do
+users_count = 3
+seeder.create_if_none(User, users_count) do
   admin = User.create!(
+    name: 'Main Admin',
     username: 'admin',
     email: 'admin@gmail.com',
     password: '123123'
@@ -40,9 +42,10 @@ seeder.create_if_none(User, 4) do
 
   admin.add_role :almighty
 
-  3.times do
+  users_count.times do |i|
     User.create!(
-      username: Faker::Name.name,
+      name: Faker::Name.name,
+      username: "mysupername#{i}",
       email: Faker::Internet.unique.email,
       password: '123123'
     )
