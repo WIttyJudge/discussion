@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :set_current_user, only: %i[
     edit update request_destroy confirm_destroy destroy
   ]
+  before_action :set_user, only: %i[show]
 
   # Pages in settings panel.
   # This is used in app/views/users/edit.html.erb
@@ -12,6 +13,8 @@ class UsersController < ApplicationController
     { name: 'account' }
   ].freeze
 
+  def show; end
+
   # GET /settings/:tab
   def edit; end
 
@@ -19,28 +22,23 @@ class UsersController < ApplicationController
   def update
     @user.update(user_update_params)
 
-    unless @user.save
-      error = @user.errors.full_messages.first
-      flash[:alert] = error
-      redirect_to user_settings_path
-      return
+    if @user.save
+      flash[:notice] = 'Your profile was successfully updated.'
+    else
+      flash[:alert] = @user.errors.full_messages.first
     end
 
-    text = 'Your profile was successfully updated.'
-    flash[:notice] = text
     redirect_to user_settings_path
   end
 
   def request_destroy
     if user_destroy_token_exists?
       text = 'You have already requested deletion. Please, check your email for further instructions.'
-      flash[:notice] = text
-      redirect_to user_settings_path('account')
-      return
+    else
+      Users::RequestDestroy.call(@user)
+      text = 'A request to delete your account has been created. Please, check your email for further instructions.'
     end
 
-    Users::RequestDestroy.call(@user)
-    text = 'A request to delete your account has been created. Please, check your email for further instructions.'
     flash[:notice] = text
     redirect_to user_settings_path('account')
   end
@@ -68,8 +66,13 @@ class UsersController < ApplicationController
     authorize @user, policy_class: UserPolicy
   end
 
+  def set_user
+    @user = User.find_by(username: params[:username])
+  end
+
   def user_update_params
-    params.require(:user).permit(:email, :username, :summery, :location)
+    params_array = %i[name email username summery location]
+    params.require(:user).permit(params_array)
   end
 
   def user_destroy_token_exists?
