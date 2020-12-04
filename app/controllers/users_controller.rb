@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   # GET /settings/:tab
   def edit; end
 
-  # PUT/PATCH /users/:id
+  # PUT/PATCH /users/:username
   def update
     @user.update(user_update_params)
 
