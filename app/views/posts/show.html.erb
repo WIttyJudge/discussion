@@ -1,7 +1,7 @@
 <div class="columns">
   <div class="column is-9">
     <h1 class="title is-2 has-text-grey discussion-title"><%= @post.title %></h1>
-    <h3 class="subtitle is-5 has-text-grey-lighter">by <%= @post.author_username %> in <%= time_ago_in_words(@post.created_at) %> </h3>
+    <h3 class="subtitle is-5 has-text-grey-lighter">by <%= @post.author_name %> in <%= time_ago_in_words(@post.created_at) %> </h3>
     <div class="level">
       <div class="level-left">
         <p>
@@ -46,7 +46,7 @@
   </div>
 
   <div class="column is-3">
-   <h1><%= @post.author_username %></h1>
+   <h1><%= @post.author_name %></h1>
   </div>
 
 </div>
