@@ -17,9 +17,8 @@
 	   		<div class="media-content">
 	   			<div class="content">
             <p>
-	   					<a href="#" class="mr-2">
-               <%= post.author_username %>
-              </a> posted <%= time_ago_in_words(post.created_at) %>
+              <%= link_to post.author_name, user_path(post.author_username), class: 'mr-2' %>
+               posted <%= time_ago_in_words(post.created_at) %>
             </p>
 
             <p>
@@ -33,7 +32,7 @@
                 <div class="level-item">
                   <p>
                     <%= link_to post_path(post.slug, anchor: 'comments'), class: 'has-text-grey-dark' do %>
-                      <i class="fa fa-comments mr-2"></i>
+                      <i class="fa fa-comments mr-1"></i>
                       <% if post.replies.any? %>
                         <span>
                           <%= pluralize(post.replies.size, 'comment') %>
@@ -49,7 +48,8 @@
               </div>
               <div class="level-right">
                 <div class="level-item">
-                  <button class="button is-light">Save</button>
+                    <i class="fa fa-bookmark mr-2"></i>
+                    <span>Save</span>
                 </div>
               </div>
             </nav>
