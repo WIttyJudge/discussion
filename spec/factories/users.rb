@@ -1,7 +1,8 @@
 FactoryBot.define do
-  sequence(:username) { |n| "#{Faker::Book.author}#{n}" }
+  sequence(:username) { |n| "myusername#{n}" }
 
   factory :user do
+    name { Faker::Book.author }
     username { generate(:username) }
     email { Faker::Internet.email }
     password { SecureRandom.hex }
