@@ -44,6 +44,18 @@ Lint/MissingSuper:
   Exclude:
     - app/services/**/*
 
+# *********************** Metrics **************************
+# https://docs.rubocop.org/rubocop/1.5/cops_metrics.html
+
+
+Metrics/BlockLength:
+  Description: 'Avoid long blocks with many lines.'
+  Enabled: true
+  Exclude:
+    - 'db/seeds.rb'
+    - 'spec/**/*'
+    - 'config/**/*'
+
 # *********************** Styles ***************************
 # https://docs.rubocop.org/rubocop/cops_style.html
 
