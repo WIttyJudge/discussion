@@ -5,7 +5,7 @@
 	  <article class="box content">
 
       <%= link_to post_path(post.slug) do %>
-       <h4 class="title is-5"> <%= post.title %> </h4>
+        <h4 class="title is-5"> <%= post.title %> </h4>
       <% end %>
 
 	   	<div class="media">
@@ -35,7 +35,7 @@
                       <i class="fa fa-comments mr-1"></i>
                       <% if post.replies.any? %>
                         <span>
-                          <%= pluralize(post.replies.size, 'comment') %>
+                          <%= pluralize(post.replies_count, 'comment') %>
                         </span>
                       <% else %>
                         <span>
@@ -48,8 +48,7 @@
               </div>
               <div class="level-right">
                 <div class="level-item">
-                    <i class="fa fa-bookmark mr-2"></i>
-                    <span>Save</span>
+                  <button class="button is-light">Save</button>
                 </div>
               </div>
             </nav>

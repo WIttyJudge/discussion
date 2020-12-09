@@ -1,3 +1,14 @@
+<% if @tag.bg_color_hex? %>
+  <div class="box" style="border-top-style: solid; border-top-width: 5px; border-top-color: <%= @tag.bg_color_hex %>">
+    <h1 class="title is-4"><%= @tag.name %></h1>
+  </div>
+<% else %>
+  <div class="box" style="border-top-style: solid; border-top-width: 5px; border-top-color: #3298dc">
+    <h1 class="title is-4"><%= @tag.name %></h1>
+  </div>
+<% end %>
+
+
 <div class="columns">
   <%= render 'posts/posts', posts: @posts %>
   <%= render 'tag_info', tag: @tag %>
