@@ -21,6 +21,11 @@ RSpec.describe Post, :type => :model do
     it { is_expected.to validate_presence_of(:body) }
   end
 
+  describe 'delegates' do
+    it { is_expected.to delegate_method(:name).to(:author).with_prefix }
+    it { is_expected.to delegate_method(:username).to(:author).with_prefix }
+  end
+
   describe '#capitalize_first_char_title' do
     let!(:post) { create(:post, title: 'this is My striNg') }
 
