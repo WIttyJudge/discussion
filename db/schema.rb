@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_03_211850) do
+ActiveRecord::Schema.define(version: 2020_12_09_141237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2020_12_03_211850) do
     t.bigint "author_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "replies_count", default: 0, null: false
     t.index ["author_id"], name: "index_posts_on_author_id"
   end
 
@@ -58,6 +59,8 @@ ActiveRecord::Schema.define(version: 2020_12_03_211850) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "guideline", null: false
     t.string "about", null: false
+    t.string "text_color_hex"
+    t.string "bg_color_hex"
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
