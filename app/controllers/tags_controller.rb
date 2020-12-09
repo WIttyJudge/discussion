@@ -3,7 +3,7 @@ class TagsController < ApplicationController
   before_action :tag_params, only: %i[create]
 
   def show
-    @pagy, @posts = pagy(@tag.posts.includes(:author, :tags))
+    @pagy, @posts = pagy(@tag.posts.includes(:author, :tags, :replies))
   end
 
   def new
