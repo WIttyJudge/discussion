@@ -27,7 +27,7 @@ Rails.application.routes.draw do
 
   resources :tags, param: :slug, only: %i[show new create]
 
-  get 'settings/(:tab)', to: 'users#edit', as: 'user_settings'
+  get 'settings/:tab', to: 'users#edit', as: 'user_settings'
   post 'request_destroy', to: 'users#request_destroy'
   # delete 'users/destroy/:username', to: 'users#destroy', as: 'user_destroy'
   # patch 'users/:username', to: 'users#update'
