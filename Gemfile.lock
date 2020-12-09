@@ -63,6 +63,7 @@ GEM
     bindex (0.8.1)
     bootsnap (1.5.1)
       msgpack (~> 1.0)
+    brakeman (4.10.0)
     builder (3.2.4)
     bulma-rails (0.9.1)
       sassc (~> 2.0)
@@ -79,6 +80,9 @@ GEM
     code_analyzer (0.5.2)
       sexp_processor
     concurrent-ruby (1.1.7)
+    counter_culture (2.7.0)
+      activerecord (>= 4.2)
+      activesupport (>= 4.2)
     crass (1.0.6)
     devise (4.7.3)
       bcrypt (~> 3.0)
@@ -320,9 +324,11 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.4.2)
+  brakeman (~> 4.10)
   bulma-rails (~> 0.9.0)
   byebug
   capybara (>= 2.15)
+  counter_culture (~> 2.0)
   devise (~> 4.7, >= 4.7.3)
   dotenv-rails (~> 2.7, >= 2.7.6)
   factory_bot_rails (~> 6.1)
