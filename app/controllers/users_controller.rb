@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       flash[:alert] = @user.errors.full_messages.first
     end
 
-    redirect_to user_settings_path
+    redirect_to user_settings_path('profile')
   end
 
   def request_destroy
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   private
 
   def set_settings_tab
-    @tab = params[:tab] || 'profile'
+    @tab = params[:tab]
   end
 
   def set_current_user
