@@ -49,7 +49,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    Users::DeleteWorker.perform_async(@user.id)
     sign_out @user
+    flash[:notice] = 'Your account in a schedule of deletion.'
+    redirect_to root_path
   end
 
   # GET /confirm_signout

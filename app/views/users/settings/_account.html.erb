@@ -12,4 +12,6 @@
   </div>
 
   <%= button_to "Delete Account", request_destroy_path, class: 'button has-background-danger-dark has-text-white' %>
+
+  <%= button_to "Delete Account", user_path(current_user.username), method: :delete, class: 'button has-background-danger-dark has-text-white' %>
 </div>
