@@ -9,7 +9,7 @@ class Seeder
 
     if klass
       message = "Creating #{records_count} #{plural_name}."
-      puts "  #{@counter}. #{message}"
+      puts "#{@counter}. #{message}"
       yield
     else
       puts "Cannot seed #{plural_name}"
@@ -23,13 +23,15 @@ class Seeder
 
     if klass
       message = "Creating #{plural_association} for #{records_count} #{plural_klass}."
-      puts "  #{@counter}. #{message}"
+      puts "#{@counter}. #{message}"
       yield
     end
   end
 end
 
 seeder = Seeder.new
+
+puts "Start seeding".center(21, '-')
 
 users_count = 3
 seeder.create_if_none(User, users_count) do
