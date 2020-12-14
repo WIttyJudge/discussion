@@ -1,4 +1,6 @@
-# installation
+# Setup
+
+## Installation
 
 Cloning the repository.
 ```
@@ -27,3 +29,19 @@ Also we are using Redis for caching, you can run it locally using docker we've c
 ```
 
 Run ``rails dev:cache`` to toggle caching in development environment.
+
+## Init Database
+
+Type this command to create database, start migration and add testing data.
+
+```
+$ rails db:{create,migrate,seed}
+```
+
+## Sidekiq
+
+Init redis server and then type this:
+
+```
+$ bundle exec sidekiq
+```
