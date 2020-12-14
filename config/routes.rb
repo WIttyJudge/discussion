@@ -14,7 +14,8 @@ Rails.application.routes.draw do
 
     resources :posts, param: :slug, except: %i[show edit update]
     resources :replies, only: %i[index destroy]
-    resources :tags, param: :slug, only: %i[index]
+    resources :tags, param: :slug, only: %i[index new create]
+    resources :tags, param: :slug, except: %i[show edit update]
   end
 
   resources :posts, param: :slug, except: %i[index] do
@@ -23,9 +24,11 @@ Rails.application.routes.draw do
     resource :replies, only: %i[create]
   end
 
-  resources :users, param: :username, only: %i[show update destroy]
+  resources :users, param: :username, only: %i[show update destroy] do
+    resource :bookmarks, only: %i[create]
+  end
 
-  resources :tags, param: :slug, only: %i[show new create]
+  resources :tags, param: :slug, only: %i[show]
 
   get 'settings/:tab', to: 'users#edit', as: 'user_settings'
   post 'request_destroy', to: 'users#request_destroy'

@@ -4,8 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :posts, foreign_key: 'author_id'
+  has_many :posts, foreign_key: 'author_id', dependent: :destroy
   has_many :replies
+  has_many :bookmarks
+  has_many :bookmarked_posts, through: :bookmarks,
+                              source: :post, dependent: :destroy
 
   validates :name, presence: true
   validates :username, presence: true
