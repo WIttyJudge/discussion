@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_09_141237) do
+ActiveRecord::Schema.define(version: 2020_12_13_111047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "user_id"
+    t.index ["post_id"], name: "index_bookmarks_on_post_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "title", null: false
@@ -88,6 +95,8 @@ ActiveRecord::Schema.define(version: 2020_12_09_141237) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "bookmarks", "posts"
+  add_foreign_key "bookmarks", "users"
   add_foreign_key "posts", "users", column: "author_id"
   add_foreign_key "replies", "posts"
   add_foreign_key "replies", "users"
