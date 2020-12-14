@@ -9,7 +9,7 @@ class Seeder
 
     if klass
       message = "Creating #{records_count} #{plural_name}."
-      puts "  #{@counter}. #{message}"
+      puts "#{@counter}. #{message}"
       yield
     else
       puts "Cannot seed #{plural_name}"
@@ -23,7 +23,7 @@ class Seeder
 
     if klass
       message = "Creating #{plural_association} for #{records_count} #{plural_klass}."
-      puts "  #{@counter}. #{message}"
+      puts "#{@counter}. #{message}"
       yield
     end
   end
@@ -31,8 +31,12 @@ end
 
 seeder = Seeder.new
 
-seeder.create_if_none(User, 4) do
+puts "Start seeding".center(21, '-')
+
+users_count = 3
+seeder.create_if_none(User, users_count) do
   admin = User.create!(
+    name: 'Main Admin',
     username: 'admin',
     email: 'admin@gmail.com',
     password: '123123'
@@ -40,10 +44,11 @@ seeder.create_if_none(User, 4) do
 
   admin.add_role :almighty
 
-  3.times do
+  users_count.times do |i|
     User.create!(
-      username: Faker::Name.name,
-      email: "#{Faker::Internet.email}",
+      name: Faker::Name.name,
+      username: "mysupername#{i}",
+      email: Faker::Internet.unique.email,
       password: '123123'
     )
   end

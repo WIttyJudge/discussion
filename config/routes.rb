@@ -12,8 +12,10 @@ Rails.application.routes.draw do
   namespace :admin do
     get '/', to: redirect('/admin/posts')
 
-    resources :posts, param: :slug, only: %i[index destroy]
+    resources :posts, param: :slug, except: %i[show edit update]
     resources :replies, only: %i[index destroy]
+    resources :tags, param: :slug, only: %i[index new create]
+    resources :tags, param: :slug, except: %i[show edit update]
   end
 
   resources :posts, param: :slug, except: %i[index] do
@@ -22,11 +24,13 @@ Rails.application.routes.draw do
     resource :replies, only: %i[create]
   end
 
-  resources :users, only: %i[update destroy]
+  resources :users, param: :username, only: %i[show update destroy] do
+    resource :bookmarks, only: %i[create]
+  end
 
-  resources :tags, param: :slug, only: %i[show new create]
+  resources :tags, param: :slug, only: %i[show]
 
-  get 'settings/(:tab)', to: 'users#edit', as: 'user_settings'
+  get 'settings/:tab', to: 'users#edit', as: 'user_settings'
   post 'request_destroy', to: 'users#request_destroy'
   # delete 'users/destroy/:username', to: 'users#destroy', as: 'user_destroy'
   # patch 'users/:username', to: 'users#update'

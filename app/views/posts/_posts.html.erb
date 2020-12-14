@@ -5,7 +5,7 @@
 	  <article class="box content">
 
       <%= link_to post_path(post.slug) do %>
-       <h4 class="title is-5"> <%= post.title %> </h4>
+        <h4 class="title is-5"> <%= post.title %> </h4>
       <% end %>
 
 	   	<div class="media">
@@ -17,9 +17,8 @@
 	   		<div class="media-content">
 	   			<div class="content">
             <p>
-	   					<a href="#" class="mr-2">
-               <%= post.author_username %>
-              </a> posted <%= time_ago_in_words(post.created_at) %>
+              <%= link_to post.author_name, user_path(post.author_username), class: 'mr-2' %>
+               posted <%= time_ago_in_words(post.created_at) %>
             </p>
 
             <p>
@@ -28,20 +27,31 @@
               <% end %>
             </p>
 
-            <p>
-              <%= link_to post_path(post.slug, anchor: 'comments'), class: 'has-text-grey-dark' do %>
-                <i class="fa fa-comments mr-1"></i>
-                <% if post.replies.any? %>
-                  <span>
-                    <%= pluralize(post.replies.size, 'comment') %>
-                  </span>
-                <% else %>
-                  <span>
-                    Add comments
-                  </span>
-                <% end %>
-              <% end %>
-            </p>
+            <nav class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <p>
+                    <%= link_to post_path(post.slug, anchor: 'comments'), class: 'has-text-grey-dark' do %>
+                      <i class="fa fa-comments mr-1"></i>
+                      <% if post.replies.any? %>
+                        <span>
+                          <%= pluralize(post.replies_count, 'comment') %>
+                        </span>
+                      <% else %>
+                        <span>
+                          Add comments
+                        </span>
+                      <% end %>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
+              <div class="level-right">
+                <div class="level-item">
+                  <button class="button is-light">Save</button>
+                </div>
+              </div>
+            </nav>
 
 	   			</div>
 	   		</div>

@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_25_131006) do
+ActiveRecord::Schema.define(version: 2020_12_13_111047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "post_id"
+    t.bigint "user_id"
+    t.index ["post_id"], name: "index_bookmarks_on_post_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
 
   create_table "posts", force: :cascade do |t|
     t.string "title", null: false
@@ -22,6 +29,7 @@ ActiveRecord::Schema.define(version: 2020_11_25_131006) do
     t.bigint "author_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "replies_count", default: 0, null: false
     t.index ["author_id"], name: "index_posts_on_author_id"
   end
 
@@ -58,6 +66,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_131006) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "guideline", null: false
     t.string "about", null: false
+    t.string "text_color_hex"
+    t.string "bg_color_hex"
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
@@ -72,6 +82,7 @@ ActiveRecord::Schema.define(version: 2020_11_25_131006) do
     t.string "username", null: false
     t.string "summery"
     t.string "location"
+    t.string "name", null: false
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
@@ -84,6 +95,8 @@ ActiveRecord::Schema.define(version: 2020_11_25_131006) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "bookmarks", "posts"
+  add_foreign_key "bookmarks", "users"
   add_foreign_key "posts", "users", column: "author_id"
   add_foreign_key "replies", "posts"
   add_foreign_key "replies", "users"

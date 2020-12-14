@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Discussio Admin - <%= controller_name.titleize %></title>
+    <title>Discussion Admin - <%= controller_name.titleize %></title>
     <%= csrf_meta_tags %>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -17,19 +17,18 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
-<body>
+<body class="has-background-white-bis" style="min-height: 100vh;">
 
   <div class="section">
     <div class="container">
       <div class="columns">
-        <div class="column is-2">
+        <div class="column is-2 mt-4">
           <aside class="menu is-hidden-mobile">
 
           <%= link_to "Back to app", root_path, class: 'button is-info is-outlined mb-4' %>
-
             <ul class="menu-list">
-              <% Admin::BaseController::MENU_ITEMS.each do |menu_item|%>
-                <li>
+              <% Admin::BaseController::MENU_ITEMS.each do |menu_item| %>
+                <li class="mb-2">
                   <a href="/admin/<%= menu_item[:controller] %>">
                     <%= menu_item[:name].titleize %>
                   </a>
@@ -39,7 +38,7 @@
           </aside>
         </div>
 
-        <div class="column is-10">
+        <div class="column is-10 box pt-4 px-5">
           <% if flash[:notice] %>
             <div class="notification is-success is-light has-text-centered ">
             <button class="delete" onclick="this.parentElement.style.display = 'none'" ></button>

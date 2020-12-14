@@ -13,7 +13,7 @@
 
   <body class="has-background-white-bis" style="min-height: 100vh; padding-top: 48px;">
     <% if flash[:notice] %>
-      <div class="notification is-success is-light">
+      <div class="notification is-success is-light has-text-centered">
         <p><%= notice %></p>
       </div>
     <% end %>
@@ -52,7 +52,7 @@
               <p class="control">
                 <%= link_to "Write a post", new_post_path, class: "button is-info" %>
               </p>
-              </div>
+            </div>
           </div>
           <div class="navbar-item has-dropdown is-hoverable">
             <%= link_to 'Account', edit_user_registration_path, class: "navbar-link" %>
@@ -63,7 +63,9 @@
 
               <%= link_to "Write a post", new_post_path, class: "navbar-item" %>
 
-              <%= link_to "Settings", user_settings_url, class: "navbar-item" %>
+              <%# <%= link_to "Bookmarks", bookmarks_path, class: "navbar-item" %1> %>
+
+              <%= link_to "Settings", user_settings_url('profile'), class: "navbar-item" %>
 
               <hr class="navbar-divider">
               <%= link_to "Sign out",  confirm_signout_path, class: "navbar-item" %>
@@ -92,11 +94,11 @@
     </div>
   </nav>
 
-    <section class="section ">
-      <div class="container" style="margin-bottom: 100px;">
-        <%= yield %>
-      </div>
-    </section>
+  <section class="section ">
+    <div class="container" style="margin-bottom: 100px;">
+      <%= yield %>
+    </div>
+  </section>
 
   </body>
 </html>

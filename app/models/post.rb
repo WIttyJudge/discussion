@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   resourcify
 
+  delegate :name, to: :author, prefix: true
   delegate :username, to: :author, prefix: true
 
   belongs_to :author, class_name: 'User'

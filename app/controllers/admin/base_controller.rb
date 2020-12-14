@@ -8,7 +8,8 @@ module Admin
     # This is used in app/views/layouts/admin.html.erb
     MENU_ITEMS = [
       { name: 'posts', controller: 'posts' },
-      { name: 'replies', controller: 'replies' }
+      { name: 'replies', controller: 'replies' },
+      { name: 'tags', controller: 'tags' }
     ].sort_by { |menu_item| menu_item[:name] }.freeze
 
     private

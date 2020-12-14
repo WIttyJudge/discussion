@@ -9,4 +9,8 @@ RSpec.describe Reply, :type => :model do
   describe 'validates' do
     it { is_expected.to validate_presence_of(:reply) }
   end
+
+  describe 'delegates' do
+    it { is_expected.to delegate_method(:username).to(:user).with_prefix }
+  end
 end

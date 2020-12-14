@@ -1,6 +1,10 @@
-<%= simple_form_for @user, url: user_path(@user.id), method: :patch do |f| %>
+<%= simple_form_for @user, url: user_path(@user.username), method: :patch do |f| %>
   <div class="box">
     <h1 class="title is-4">User</h1>
+
+      <div class="mb-4">
+        <%= f.input :name, input_html: { class: 'input', placeholder: 'John Doe', value: @user.name }, wrapper: false, label_html: { class: 'has-text-weight-normal label' } %>
+      </div>
 
       <div class="mb-4">
         <%= f.input :email, input_html: { class: 'input', placeholder: 'john@gmail.com', value: @user.email }, wrapper: false, label_html: { class: "has-text-weight-normal label" } %>
