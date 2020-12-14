@@ -4,6 +4,11 @@ FactoryBot.define do
     name { generate(:name) }
     # TODO: Add faker to guideline and decription
     guideline { 'text' }
-    description { 'text' }
+    about { 'text' }
+
+    trait :colored do
+      text_color_hex { Faker::Color.hex_color }
+      bg_color_hex { Faker::Color.hex_color }
+    end
   end
 end
