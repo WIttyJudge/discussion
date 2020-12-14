@@ -80,6 +80,7 @@ GEM
     code_analyzer (0.5.2)
       sexp_processor
     concurrent-ruby (1.1.7)
+    connection_pool (2.2.3)
     counter_culture (2.7.0)
       activerecord (>= 4.2)
       activesupport (>= 4.2)
@@ -270,6 +271,10 @@ GEM
     sexp_processor (4.15.1)
     shoulda-matchers (4.4.1)
       activesupport (>= 4.2.0)
+    sidekiq (6.1.2)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
     simple_form (5.0.3)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -353,6 +358,7 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver
   shoulda-matchers (~> 4.4, >= 4.4.1)
+  sidekiq (~> 6.1, >= 6.1.2)
   simple_form (~> 5.0, >= 5.0.3)
   simplecov (~> 0.19.1)
   spring
