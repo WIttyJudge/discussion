@@ -8,14 +8,27 @@ Rails.application.routes.draw do
     get 'login', to: 'devise/sessions#new'
   end
 
+  authenticated :user, ->(user) { user.has_role?(:almighty) } do
+    require 'sidekiq/web'
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
+  # JSON API
+  namespace :api do
+    namespace :v0, defaults: { format: 'json' } do
+      resources :posts, param: :slug, except: %i[new edit]
+    end
+  end
+
   # Admin Panel
   namespace :admin do
     get '/', to: redirect('/admin/posts')
 
     resources :posts, param: :slug, except: %i[show edit update]
     resources :replies, only: %i[index destroy]
-    resources :tags, param: :slug, only: %i[index new create]
-    resources :tags, param: :slug, except: %i[show edit update]
+    resources :tags, param: :slug, except: %i[show edit update] do
+      post 'generate_excel', on: :collection
+    end
   end
 
   resources :posts, param: :slug, except: %i[index] do
