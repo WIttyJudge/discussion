@@ -5,11 +5,15 @@
 
 <hr class="navbar-divider my-4">
 
+<div class="is-flex">
+  <%= button_to t('admin.export_to_excel'), generate_excel_admin_tags_path(formal: :xlsx), class: 'button' %>
+</div>
+
 <table class="table is-fullwidth">
   <thead>
     <tr>
       <th>ID</th>
-      <th>Title</th>
+      <th>Name</th>
       <th>Text Color</th>
       <th>Background Color</th>
       <th>Created At</th>
