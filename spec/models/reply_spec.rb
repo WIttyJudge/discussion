@@ -11,6 +11,6 @@ RSpec.describe Reply, :type => :model do
   end
 
   describe 'delegates' do
-    it { is_expected.to delegate_method(:username).to(:user).with_prefix }
+    it { is_expected.to delegate_method(:name).to(:user).with_prefix }
   end
 end
