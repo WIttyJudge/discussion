@@ -1,5 +1,5 @@
 class Reply < ApplicationRecord
-  delegate :username, to: :user, prefix: true
+  delegate :name, to: :user, prefix: true
 
   belongs_to :post
   belongs_to :user
