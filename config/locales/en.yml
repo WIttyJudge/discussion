@@ -30,4 +30,14 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  menu:
+    search: "Search"
+    login: 'Log in'
+    signup: 'Create account'
+    signout: 'Sign Out'
+    write_a_post: 'Write a post'
+    settings: 'Settings'
+    bookmarks: 'Bookmarks'
+    account: 'Account'
+  admin:
+    export_to_excel: 'Export to Excel'

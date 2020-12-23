@@ -8,6 +8,8 @@ ru:
     settings: 'Найстроки'
     bookmarks: 'Закладки'
     account: 'Аккаунт'
+  admin:
+    export_to_excel: 'Скачать Excel'
   datetime:
     distance_in_words:
       about_x_hours:
