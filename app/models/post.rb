@@ -12,7 +12,9 @@ class Post < ApplicationRecord
   validates :title, presence: true, length: { in: 10..100 }
   validates :body, presence: true
 
-  before_save :capitalize_first_char_title, :create_slug
+  before_save :capitalize_first_char_title
+  before_save :create_slug
+  before_save :calculate_reading_time
 
   scope :recent, -> { order(created_at: :desc) }
 
@@ -29,5 +31,9 @@ class Post < ApplicationRecord
 
   def generate_slug
     "#{title.parameterize}-#{rand(100_000).to_s(26)}"
+  end
+
+  def calculate_reading_time
+    self.reading_time = Posts::CalculateReadingTime.call(body)
   end
 end
