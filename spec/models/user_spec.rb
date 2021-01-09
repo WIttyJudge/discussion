@@ -4,6 +4,14 @@ RSpec.describe User, :type => :model do
   describe 'associations' do
     it { is_expected.to have_many(:posts).with_foreign_key('author_id') }
     it { is_expected.to have_many(:replies) }
+    it { is_expected.to have_many(:bookmarks) }
+
+    it {
+      expect(subject).to have_many(:bookmarked_posts)
+        .through(:bookmarks)
+        .source(:post)
+        .dependent(:destroy)
+    }
   end
 
   describe 'validations' do
