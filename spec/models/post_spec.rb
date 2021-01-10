@@ -26,6 +26,19 @@ RSpec.describe Post, :type => :model do
     it { is_expected.to delegate_method(:username).to(:author).with_prefix }
   end
 
+  describe '.recent' do
+    let!(:post1) { create(:post) }
+    let!(:post2) { create(:post) }
+
+    it 'return posts ordered by created_at' do
+      expect(described_class.recent.pluck(:created_at)).to eq([post2.created_at, post1.created_at])
+    end
+
+    it 'incorrect posts return by created_at' do
+      expect(described_class.recent.pluck(:created_at)).not_to eq([post1.created_at, post2.created_at])
+    end
+  end
+
   describe '#capitalize_first_char_title' do
     let!(:post) { create(:post, title: 'this is My striNg') }
 
@@ -51,16 +64,29 @@ RSpec.describe Post, :type => :model do
     end
   end
 
-  describe '.recent' do
-    let!(:post1) { create(:post) }
-    let!(:post2) { create(:post) }
+  describe '#calculate_reading_time' do
+    let(:post) { build(:post) }
 
-    it 'return posts ordered by created_at' do
-      expect(described_class.recent.pluck(:created_at)).to eq([post2.created_at, post1.created_at])
+    it 'equel 1 if body shorter then words per minute value' do
+      post.body = 'This is my title'
+      post.save
+
+      expect(post.reading_time).to eq(1)
     end
 
-    it 'incorrect posts return by created_at' do
-      expect(described_class.recent.pluck(:created_at)).not_to eq([post1.created_at, post2.created_at])
+    it 'equel 1 if body has 300 words' do
+      post.body = Faker::Lorem.sentence(word_count: 300)
+      post.save
+
+      expect(post.reading_time).to eq(1)
+    end
+
+    it 'equel 13 if body has 3000 words' do
+      # 3000 / 230
+      post.body = Faker::Lorem.sentence(word_count: 3000)
+      post.save
+
+      expect(post.reading_time).to eq(13)
     end
   end
 end

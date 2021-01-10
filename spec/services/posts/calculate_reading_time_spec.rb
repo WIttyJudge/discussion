@@ -1,29 +1,30 @@
 require 'rails_helper'
 
-RSpec.describe Posts::CalculateReadingTime, type: :model do
+RSpec.describe Posts::CalculateReadingTime do
   let(:post) { build(:post) }
 
   context 'when valid attributes' do
-    it 'equel 1 if body shorter then words per minute value' do
-      post.body = 'This is my title'
-      post.save
+    it 'equel 1 if conte shorter then words per minute value' do
+      content = 'This is my title'
 
-      expect(post.reading_time).to eq(1)
+      reading_time = described_class.call(content)
+
+      expect(reading_time).to eq(1)
     end
 
-    it 'equel 1 if body has 300 words' do
-      post.body = Faker::Lorem.sentence(word_count: 300)
-      post.save
+    it 'equel 1 if conte has 300 words' do
+      content = Faker::Lorem.sentence(word_count: 300)
+      reading_time = described_class.call(content)
 
-      expect(post.reading_time).to eq(1)
+      expect(reading_time).to eq(1)
     end
 
-    it 'equel 10 if body has 3000 words' do
+    it 'equel 13 if cont has 3000 words' do
       # 3000 / 230
-      post.body = Faker::Lorem.sentence(word_count: 3000)
-      post.save
+      content = Faker::Lorem.sentence(word_count: 3000)
+      reading_time = described_class.call(content)
 
-      expect(post.reading_time).to eq(13)
+      expect(reading_time).to eq(13)
     end
   end
 end
