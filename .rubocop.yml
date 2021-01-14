@@ -1,3 +1,5 @@
+# This is the configuration used to check the rubocop source code.
+
 require:
   - rubocop-performance
   - rubocop-rails
