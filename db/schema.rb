@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2021_01_08_165505) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "replies_count", default: 0, null: false
-    t.integer "reading_time", default: 0
+    t.integer "reading_time", default: 1
     t.index ["author_id"], name: "index_posts_on_author_id"
   end
 
